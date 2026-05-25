@@ -1,32 +1,56 @@
 ---
 import Layout from './layout.astro';
+import { lessons } from './_data/lessons';
 
 const baseUrl = import.meta.env.BASE_URL;
-const lessons = [
-  'Frames of reference',
-  'The speed of light',
-  'Time dilation',
-  'Length contraction',
-  'Spacetime intervals',
-];
+const projectUrl = `${baseUrl}projects/relativity-10-lessons/`;
 ---
 
-<Layout title="Relativity in 10 Lessons">
-  <a class="back-link" href={baseUrl}>Back to Lab</a>
+<Layout
+  title="Zrozumienie Zasady Względności Einsteina"
+  description="Polski kurs 10 lekcji wyjaśniających zasadę względności Einsteina przez intuicje, przykłady i diagramy."
+>
+  <a class="back-link" href={baseUrl}>Wróć do Lab</a>
   <section class="project-hero">
-    <p class="eyebrow">Lesson scaffold</p>
-    <h1>Relativity in 10 Lessons</h1>
-    <p>Build a clear sequence of short lessons that explain special relativity with static-first examples.</p>
+    <div>
+      <p class="eyebrow">Theme</p>
+      <h1>Zrozumienie Zasady Względności Einsteina</h1>
+      <p>
+        Rozwiniesz intuicyjne zrozumienie zasady względności przez metafory i
+        przykłady z życia codziennego: od podstaw ruchu po czas, przestrzeń i
+        rewolucję wywołaną stałą prędkością światła.
+      </p>
+    </div>
+    <figure class="course-orbit" aria-label="Schemat kursu: obserwatorzy, światło i czasoprzestrzeń">
+      <span></span>
+      <span></span>
+      <span></span>
+      <figcaption>10 lekcji bez ćwiczeń</figcaption>
+    </figure>
   </section>
 
   <section class="lesson-list" aria-labelledby="lessons-heading">
-    <h2 id="lessons-heading">Lesson sequence</h2>
+    <div class="section-heading">
+      <h2 id="lessons-heading">Plan lekcji</h2>
+      <p>{lessons.length} stron z wyjaśnieniami i grafikami</p>
+    </div>
     <ol>
       {
         lessons.map((lesson) => (
           <li>
-            <span>{lesson}</span>
-            <p>Draft lesson module ready for notes, diagrams, and interactive checks.</p>
+            <a href={`${projectUrl}lessons/${lesson.slug}/`}>
+              <figure class={`visual visual--${lesson.visual}`} aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </figure>
+              <div>
+                <span>Lekcja {lesson.number}</span>
+                <h3>{lesson.title}</h3>
+                <p>{lesson.deck}</p>
+              </div>
+            </a>
           </li>
         ))
       }

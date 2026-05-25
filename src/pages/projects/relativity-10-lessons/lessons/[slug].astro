@@ -1,0 +1,99 @@
+---
+import Layout from '../layout.astro';
+import { lessons, type Lesson } from '../_data/lessons';
+
+export function getStaticPaths() {
+  return lessons.map((lesson) => ({
+    params: { slug: lesson.slug },
+    props: { lesson },
+  }));
+}
+
+interface Props {
+  lesson: Lesson;
+}
+
+const { lesson } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+const projectUrl = `${baseUrl}projects/relativity-10-lessons/`;
+const currentIndex = lessons.findIndex((entry) => entry.slug === lesson.slug);
+const previousLesson = currentIndex > 0 ? lessons[currentIndex - 1] : undefined;
+const nextLesson = currentIndex < lessons.length - 1 ? lessons[currentIndex + 1] : undefined;
+---
+
+<Layout title={`${lesson.title} | Zasada Względności Einsteina`} description={lesson.deck}>
+  <nav class="top-nav" aria-label="Nawigacja lekcji">
+    <a class="back-link" href={projectUrl}>Wszystkie lekcje</a>
+    <span>Lekcja {lesson.number} z {lessons.length}</span>
+  </nav>
+
+  <article class="lesson-page">
+    <header class="lesson-hero">
+      <div class="lesson-hero__copy">
+        <p class="eyebrow">Zrozumienie Zasady Względności Einsteina</p>
+        <h1>{lesson.title}</h1>
+        <p>{lesson.deck}</p>
+      </div>
+      <figure class={`visual visual--large visual--${lesson.visual}`} aria-label={`Grafika do lekcji: ${lesson.title}`}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <figcaption>{lesson.duration}</figcaption>
+      </figure>
+    </header>
+
+    <section class="lesson-intro" aria-labelledby="intro-heading">
+      <h2 id="intro-heading">Cel lekcji</h2>
+      <p>{lesson.intro}</p>
+    </section>
+
+    <section class="key-ideas" aria-labelledby="ideas-heading">
+      <h2 id="ideas-heading">Najważniejsze intuicje</h2>
+      <ul>
+        {lesson.keyIdeas.map((idea) => <li>{idea}</li>)}
+      </ul>
+    </section>
+
+    <div class="lesson-body">
+      {
+        lesson.sections.map((section) => (
+          <section class="content-section">
+            <h2>{section.heading}</h2>
+            {section.body.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+        ))
+      }
+    </div>
+
+    <section class="closing-note" aria-label="Podsumowanie">
+      <p>{lesson.closing}</p>
+    </section>
+
+    <nav class="lesson-pager" aria-label="Poprzednia i następna lekcja">
+      {
+        previousLesson ? (
+          <a href={`${projectUrl}lessons/${previousLesson.slug}/`}>
+            <span>Poprzednia</span>
+            {previousLesson.title}
+          </a>
+        ) : (
+          <span></span>
+        )
+      }
+      {
+        nextLesson ? (
+          <a href={`${projectUrl}lessons/${nextLesson.slug}/`}>
+            <span>Następna</span>
+            {nextLesson.title}
+          </a>
+        ) : (
+          <a href={projectUrl}>
+            <span>Koniec kursu</span>
+            Wróć do spisu lekcji
+          </a>
+        )
+      }
+    </nav>
+  </article>
+</Layout>
