@@ -1,0 +1,52 @@
+---
+import Layout from './layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+const monthlyUsage = [
+  { month: 'Jan', kwh: 430 },
+  { month: 'Feb', kwh: 388 },
+  { month: 'Mar', kwh: 354 },
+  { month: 'Apr', kwh: 310 },
+  { month: 'May', kwh: 286 },
+  { month: 'Jun', kwh: 264 },
+];
+
+const maxUsage = Math.max(...monthlyUsage.map((entry) => entry.kwh));
+---
+
+<Layout title="Energy Consumption Analysis">
+  <a class="back-link" href={baseUrl}>Back to Lab</a>
+  <section class="project-hero">
+    <p class="eyebrow">Static analysis starter</p>
+    <h1>Energy Consumption Analysis</h1>
+    <p>Compare monthly electricity use and identify early opportunities for efficiency projects.</p>
+  </section>
+
+  <section class="analysis-grid">
+    <article class="metric-panel">
+      <span>Six-month total</span>
+      <strong>{monthlyUsage.reduce((sum, entry) => sum + entry.kwh, 0).toLocaleString()} kWh</strong>
+    </article>
+    <article class="metric-panel">
+      <span>Monthly average</span>
+      <strong>{Math.round(monthlyUsage.reduce((sum, entry) => sum + entry.kwh, 0) / monthlyUsage.length)} kWh</strong>
+    </article>
+  </section>
+
+  <section class="chart-panel" aria-labelledby="usage-heading">
+    <h2 id="usage-heading">Monthly usage</h2>
+    <div class="bar-chart">
+      {
+        monthlyUsage.map((entry) => (
+          <div class="bar-row">
+            <span>{entry.month}</span>
+            <div class="bar-track">
+              <div class="bar-fill" style={`width: ${(entry.kwh / maxUsage) * 100}%`} />
+            </div>
+            <strong>{entry.kwh} kWh</strong>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

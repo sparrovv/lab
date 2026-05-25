@@ -1,0 +1,35 @@
+---
+import Layout from './layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+const lessons = [
+  'Frames of reference',
+  'The speed of light',
+  'Time dilation',
+  'Length contraction',
+  'Spacetime intervals',
+];
+---
+
+<Layout title="Relativity in 10 Lessons">
+  <a class="back-link" href={baseUrl}>Back to Lab</a>
+  <section class="project-hero">
+    <p class="eyebrow">Lesson scaffold</p>
+    <h1>Relativity in 10 Lessons</h1>
+    <p>Build a clear sequence of short lessons that explain special relativity with static-first examples.</p>
+  </section>
+
+  <section class="lesson-list" aria-labelledby="lessons-heading">
+    <h2 id="lessons-heading">Lesson sequence</h2>
+    <ol>
+      {
+        lessons.map((lesson) => (
+          <li>
+            <span>{lesson}</span>
+            <p>Draft lesson module ready for notes, diagrams, and interactive checks.</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</Layout>

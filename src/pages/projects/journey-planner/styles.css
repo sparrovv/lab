@@ -1,0 +1,125 @@
+:root {
+  color-scheme: light;
+  --journey-ink: #1d2026;
+  --journey-muted: #626a76;
+  --journey-line: #dadde4;
+  --journey-bg: #faf9f5;
+  --journey-panel: #ffffff;
+  --journey-accent: #8d4f16;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--journey-ink);
+  background: var(--journey-bg);
+}
+
+.journey-page {
+  width: min(980px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 72px;
+}
+
+.back-link {
+  color: var(--journey-muted);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--journey-accent);
+}
+
+.project-hero {
+  padding: 58px 0 36px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--journey-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p,
+dl,
+dd {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  font-size: clamp(2.5rem, 8vw, 5.6rem);
+  line-height: 0.98;
+}
+
+.project-hero p:last-child {
+  max-width: 650px;
+  color: var(--journey-muted);
+  font-size: 1.12rem;
+  line-height: 1.62;
+}
+
+.route-list {
+  display: grid;
+  gap: 14px;
+}
+
+.route-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px;
+  border: 1px solid var(--journey-line);
+  border-radius: 8px;
+  background: var(--journey-panel);
+}
+
+.route-card h3 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.route-card p {
+  margin-bottom: 0;
+  color: var(--journey-muted);
+}
+
+.route-card dl {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 0;
+}
+
+.route-card dt {
+  color: var(--journey-muted);
+  font-size: 0.82rem;
+}
+
+.route-card dd {
+  margin-bottom: 0;
+  font-size: 1.35rem;
+  font-weight: 760;
+}
+
+@media (max-width: 680px) {
+  .route-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .route-card dl {
+    justify-content: space-between;
+  }
+}

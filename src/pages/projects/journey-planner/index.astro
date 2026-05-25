@@ -1,0 +1,43 @@
+---
+import Layout from './layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+const routes = [
+  { name: 'Fast rail', duration: '2h 24m', cost: '€42', reliability: 'High' },
+  { name: 'Regional train', duration: '3h 10m', cost: '€24', reliability: 'Medium' },
+  { name: 'Coach', duration: '4h 05m', cost: '€16', reliability: 'Medium' },
+];
+---
+
+<Layout title="Journey Planner">
+  <a class="back-link" href={baseUrl}>Back to Lab</a>
+  <section class="project-hero">
+    <p class="eyebrow">Planning prototype</p>
+    <h1>Journey Planner</h1>
+    <p>Compare route options by time, cost, and reliability before expanding into map-based workflows.</p>
+  </section>
+
+  <section class="route-list" aria-labelledby="routes-heading">
+    <h2 id="routes-heading">Route options</h2>
+    {
+      routes.map((route) => (
+        <article class="route-card">
+          <div>
+            <h3>{route.name}</h3>
+            <p>Reliability: {route.reliability}</p>
+          </div>
+          <dl>
+            <div>
+              <dt>Duration</dt>
+              <dd>{route.duration}</dd>
+            </div>
+            <div>
+              <dt>Cost</dt>
+              <dd>{route.cost}</dd>
+            </div>
+          </dl>
+        </article>
+      ))
+    }
+  </section>
+</Layout>

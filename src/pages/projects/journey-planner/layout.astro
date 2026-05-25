@@ -1,0 +1,25 @@
+---
+import './styles.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Journey planner project.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class="journey-page">
+      <slot />
+    </main>
+  </body>
+</html>
