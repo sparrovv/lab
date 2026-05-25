@@ -21,7 +21,7 @@ Rules:
 
 7. Every PR must pass:
 
-npm run build
+pnpm run build
 
 8. Prefer static implementations.
 
