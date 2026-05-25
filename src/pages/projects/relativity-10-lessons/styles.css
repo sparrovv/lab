@@ -286,10 +286,39 @@ h1 {
 }
 
 .lesson-intro,
+.visual-explainer,
+.teaching-cards,
 .key-ideas,
 .content-section,
 .closing-note {
   width: min(820px, 100%);
+}
+
+.visual-explainer {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin: -28px 0 30px auto;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.visual-explainer span,
+.teaching-cards span {
+  display: block;
+  color: var(--red);
+  font-size: 0.76rem;
+  font-weight: 860;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.visual-explainer p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.58;
 }
 
 .lesson-intro {
@@ -314,8 +343,37 @@ h1 {
   line-height: 1.76;
 }
 
+.teaching-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0 20px;
+}
+
+.teaching-cards article {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 240, 0.94), rgba(235, 225, 207, 0.72)),
+    var(--panel);
+}
+
+.teaching-cards article:last-child {
+  background:
+    linear-gradient(135deg, rgba(255, 250, 240, 0.94), rgba(178, 58, 47, 0.08)),
+    var(--panel);
+}
+
+.teaching-cards p {
+  margin: 10px 0 0;
+  color: #342e28;
+  font-size: 1.02rem;
+  line-height: 1.62;
+}
+
 .key-ideas {
-  margin: 18px 0 42px;
+  margin: 18px 0 46px;
   padding: 22px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -475,6 +533,16 @@ h1 {
   width: 36%;
   height: 3px;
   background: var(--gold);
+}
+
+.visual--motion span:nth-child(4) {
+  right: 17%;
+  top: 29%;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 14px solid var(--gold);
 }
 
 .visual--frames::before,
@@ -674,6 +742,23 @@ h1 {
   background: var(--gold);
 }
 
+.visual--postulates span:nth-child(2),
+.visual--postulates span:nth-child(3) {
+  top: 39%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.visual--postulates span:nth-child(2) {
+  left: 25%;
+}
+
+.visual--postulates span:nth-child(3) {
+  right: 25%;
+}
+
 .visual--time::before {
   left: 25%;
   top: 18%;
@@ -740,6 +825,10 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .teaching-cards {
+    grid-template-columns: 1fr;
+  }
+
   .course-orbit,
   .visual--large {
     min-height: 300px;
@@ -760,6 +849,11 @@ h1 {
   .top-nav {
     align-items: start;
     flex-direction: column;
+  }
+
+  .visual-explainer {
+    grid-template-columns: 1fr;
+    margin-top: -14px;
   }
 
   .project-hero,

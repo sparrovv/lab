@@ -43,9 +43,25 @@ const nextLesson = currentIndex < lessons.length - 1 ? lessons[currentIndex + 1]
       </figure>
     </header>
 
+    <section class="visual-explainer" aria-label="Opis grafiki">
+      <span>Grafika</span>
+      <p>{lesson.visualCaption}</p>
+    </section>
+
     <section class="lesson-intro" aria-labelledby="intro-heading">
       <h2 id="intro-heading">Cel lekcji</h2>
       <p>{lesson.intro}</p>
+    </section>
+
+    <section class="teaching-cards" aria-label="Kotwica pamięci i częsta pułapka">
+      <article>
+        <span>Zapamiętaj przez obraz</span>
+        <p>{lesson.memoryAnchor}</p>
+      </article>
+      <article>
+        <span>Częsta pułapka</span>
+        <p>{lesson.misconception}</p>
+      </article>
     </section>
 
     <section class="key-ideas" aria-labelledby="ideas-heading">
