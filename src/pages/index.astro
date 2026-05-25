@@ -3,23 +3,24 @@ import SiteShell from '../components/SiteShell.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
 const baseUrl = import.meta.env.BASE_URL;
+const projectBaseUrl = `${baseUrl.replace(/\/$/, '')}/projects`;
 const projects = [
   {
     title: 'Energy Consumption Analysis',
     description: 'A starter static analysis surface for comparing household energy demand patterns.',
-    href: `${baseUrl}projects/energy-consumption/`,
+    href: `${projectBaseUrl}/energy-consumption/`,
     tags: ['analysis', 'energy', 'visualisation'],
   },
   {
     title: 'Journey Planner',
     description: 'A compact planning prototype for evaluating route options, timing, and tradeoffs.',
-    href: `${baseUrl}projects/journey-planner/`,
+    href: `${projectBaseUrl}/journey-planner/`,
     tags: ['travel', 'maps', 'planning'],
   },
   {
     title: 'Zasada Względności Einsteina',
     description: 'Polski kurs 10 lekcji wyjaśniających ruch, układy odniesienia, światło, czas i przestrzeń.',
-    href: `${baseUrl}projects/relativity-10-lessons/`,
+    href: `${projectBaseUrl}/relativity-10-lessons/`,
     tags: ['fizyka', 'lekcje', 'edukacja'],
   },
 ];
